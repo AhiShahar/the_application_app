@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  first_name      :string
+#  last_name       :string
+#  email           :string
+#  phone           :string
+#  password_digest :text
+#  is_professional :boolean          default(FALSE)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: MyString
+  password_digest: MyText
+  is_professional: false
+
+two:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: MyString
+  password_digest: MyText
+  is_professional: false

@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: appointment_types
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  price       :float
+#  duration    :date
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  price: 1.5
+  duration: 2016-11-28
+
+two:
+  name: MyString
+  description: MyText
+  price: 1.5
+  duration: 2016-11-28

@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: appointments
+#
+#  id                  :integer          not null, primary key
+#  start_time          :date
+#  professional_id     :integer
+#  appointment_type_id :integer
+#  category            :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2016-11-28
+  professional_id: 1
+  appointment_type_id: 1
+  category: 1
+
+two:
+  start_time: 2016-11-28
+  professional_id: 1
+  appointment_type_id: 1
+  category: 1
