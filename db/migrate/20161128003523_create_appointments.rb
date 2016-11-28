@@ -4,7 +4,8 @@ class CreateAppointments < ActiveRecord::Migration
       t.datetime :start_time
       t.integer :professional_id
       t.integer :appointment_type_id
-      t.integer :category
+      t.integer :customer_id
+      t.boolean :available, :default => true
 
       t.timestamps null: false
     end

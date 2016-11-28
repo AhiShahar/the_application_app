@@ -6,12 +6,14 @@
 #  start_time          :datetime
 #  professional_id     :integer
 #  appointment_type_id :integer
-#  category            :integer
+#  customer_id         :integer
+#  available           :boolean          default(TRUE)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
 
 class Appointment < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :appointment
+  belongs_to :professional, :class_name => "User", :foreign_key => "professional_id"
+  belongs_to :customer, :class_name => "User", :foreign_key => "customer_id"
+  belongs_to :appointment_type
 end

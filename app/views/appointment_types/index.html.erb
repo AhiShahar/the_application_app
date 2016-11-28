@@ -1,0 +1,12 @@
+<h3>Our Services:</h3>
+<br>
+<% @appointment_types.all.each do |app| %>
+
+    <p><span class="spans_description">Service: </span><%= app.name %>  <br>
+    <span class="spans_description">Description: </span><%= app.description %> <br>
+    <span class="spans_description">Length: </span><%= app.duration %>  <br>
+    <span class="spans_description">By: </span><%= link_to app.user.first_name, user_path(app.user.id) %></p>  <br>
+
+    <hr>
+
+<% end %>

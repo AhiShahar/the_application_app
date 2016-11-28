@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20161128004659) do
     t.datetime "start_time"
     t.integer  "professional_id"
     t.integer  "appointment_type_id"
-    t.integer  "category"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.integer  "customer_id"
+    t.boolean  "available",           default: true
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,7 +42,9 @@ ActiveRecord::Schema.define(version: 20161128004659) do
     t.string   "email"
     t.string   "phone"
     t.text     "password_digest"
+    t.text     "image"
     t.boolean  "is_professional", default: false
+    t.string   "profession"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

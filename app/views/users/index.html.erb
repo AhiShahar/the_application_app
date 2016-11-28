@@ -1,0 +1,13 @@
+<h3>Our Professionals:</h3>
+<% @users.all.each do |user| %>
+  <% if user.is_professional %>
+
+    <%= user.profession %> <br>
+    <%= user.first_name + " " + user.last_name %> <br>
+    <%= user.phone %> <br>
+    <%= user.email %> <br>
+
+    <hr>
+
+  <% end %>
+<% end %>

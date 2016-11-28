@@ -6,7 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :phone
       t.text :password_digest
+      t.text :image
       t.boolean :is_professional, default: false
+      t.string :profession
 
       t.timestamps null: false
     end

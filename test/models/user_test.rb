@@ -8,7 +8,9 @@
 #  email           :string
 #  phone           :string
 #  password_digest :text
+#  image           :text
 #  is_professional :boolean          default(FALSE)
+#  profession      :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
