@@ -31,11 +31,12 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'bootstrap-sass', '~> 3.2.0'
 # gem 'autoprefixer-rails'
 gem 'materialize-sass'
-
+gem 'faker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
   gem 'rails_12factor'
+
 end
 
 group :development, :test do
@@ -48,7 +49,6 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'pry-rails'
   gem 'annotate'
-  gem 'faker'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
