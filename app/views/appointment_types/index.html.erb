@@ -1,12 +1,21 @@
 <h3>Our Services:</h3>
 <br>
 <% @appointment_types.all.each do |app| %>
-
-    <p><span class="spans_description">Service: </span><%= app.name %>  <br>
-    <span class="spans_description">Description: </span><%= app.description %> <br>
-    <span class="spans_description">Length: </span><%= app.duration %>  <br>
-    <span class="spans_description">By: </span><%= link_to app.user.first_name, user_path(app.user.id) %></p>  <br>
-
-    <hr>
+  <div class="row">
+    <div class="collection col s12 m12">
+      <%= link_to user_path(app.user.id), :class => "collection-item" do %>
+        <span class="badge"><%= app.name %></span>Service:
+      <% end %>
+      <%= link_to user_path(app.user.id), :class => "collection-item" do %>
+        <span class="badge"><%= app.description %></span>Description:
+      <% end %>
+      <%= link_to user_path(app.user.id), :class => "collection-item" do %>
+        <span class="badge"><%= app.duration %></span>Duration:
+      <% end %>
+      <%= link_to user_path(app.user.id), :class => "collection-item" do %>
+        <span class="badge"><%= app.user.first_name %></span>By:
+      <% end %>
+    </div>
+  </div>
 
 <% end %>

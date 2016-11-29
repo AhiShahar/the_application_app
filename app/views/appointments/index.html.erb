@@ -3,17 +3,22 @@
 
 <div class="row">
   <% @appointments.each do |app| %>
+
         <div class="col s12 m6">
           <div class="card">
             <div class="card-content black-text">
               <span class="card-title"><%= app.start_time %></span>
               <p>
-                <%= app.appointment_type.name %>
+                <% if app.appointment_type %>
+                  <%= app.appointment_type.name %>
+                <% else %>
+                  Available
+                <% end %>
               </p>
             </div>
             <div class="card-action">
               <%= link_to "Edit Details", edit_appointment_path(app), :class => 'test'%>
-              <a href="#">This is a link</a>
+              <%= link_to "Cancel Appointment", appointment_path(app), :method => :delete, :data => { :confirm => "Are you sure?" }, :class => 'test'%>
             </div>
           </div>
         </div>

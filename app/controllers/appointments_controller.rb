@@ -27,9 +27,33 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
-    appointment = Appointment.find_by :id => params[:id]
-    appointment.destroy
-    redirect_to appointments_path
+    @appointment = Appointment.find_by :id => params[:id]
+    if @appointment.customer == @current_user
+      if (@appointment.start_time - Time.now) > 24.hours
+        @appointment.customer = nil
+        @appointment.available = true
+        @appointment.appointment_type_id = nil
+        redirect_to appointments_path
+      else
+        flash[:error] = "Cannot cancel appointment with less then 24hrs, please contact #{@appointment.professional.email}"
+        redirect_to appointments_path
+      end
+    elsif @appointment.professional == @current_user
+      if !@appointment.customer
+        @appointment.destroy
+        redirect_to appointments_path
+      else
+        flash[:error] = "Cannot cancel booked appointment, please contact #{@appointment.customer.email}"
+        redirect_to @appointment
+      end
+    end
+  end
+
+  def reset_appointment(appointment)
+    @appointment = appointment
+    @appointment.customer = nil
+    @appointment.available = true
+    @appointment.appointment_type_id = nil
   end
 
   def new
@@ -46,7 +70,16 @@ class AppointmentsController < ApplicationController
   end
 
   def index
-    @appointments = Appointment.all
+    if @current_user
+      appointments = Appointment.where( "professional_id = #{@current_user.id} OR customer_id = #{@current_user.id}" )
+      @appointments = appointments.uniq.sort_by {|app| app.start_time}
+      # @appointments = []
+      # Appointment.all.each do |app|
+      #   if (app.professional = @current_user || app.customer = @current_user)
+      #     @appointments << app
+      #   end
+      # end
+    end
   end
 
   private
