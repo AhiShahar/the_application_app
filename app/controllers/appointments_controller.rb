@@ -30,9 +30,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find_by :id => params[:id]
     if @appointment.customer == @current_user
       if (@appointment.start_time - Time.now) > 24.hours
-        @appointment.customer = nil
-        @appointment.available = true
-        @appointment.appointment_type_id = nil
+        reset_appointment
         redirect_to appointments_path
       else
         flash[:error] = "Cannot cancel appointment with less then 24hrs, please contact #{@appointment.professional.email}"
@@ -49,11 +47,11 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def reset_appointment(appointment)
-    @appointment = appointment
+  def reset_appointment
     @appointment.customer = nil
     @appointment.available = true
     @appointment.appointment_type_id = nil
+    @appointment.save
   end
 
   def new
@@ -73,12 +71,6 @@ class AppointmentsController < ApplicationController
     if @current_user
       appointments = Appointment.where( "professional_id = #{@current_user.id} OR customer_id = #{@current_user.id}" )
       @appointments = appointments.uniq.sort_by {|app| app.start_time}
-      # @appointments = []
-      # Appointment.all.each do |app|
-      #   if (app.professional = @current_user || app.customer = @current_user)
-      #     @appointments << app
-      #   end
-      # end
     end
   end
 

@@ -1,67 +1,123 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The Appointent App</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Capriola">
-</head>
-<body>
+    <head>
+        <title>The Appointent App</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width">
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Capriola">
+    </head>
+    <body>
+      <div class="full_screen row">
+        <div class="col m2 s0"></div>
+        <div class="container col m8 s12">
 
-  <div class="container">
-
-         <%= link_to "Home", root_path%>  |
-         <%= link_to "Services", appointment_types_path%>  |
-         <%= link_to "Professionals", users_path%>  |
-         <% unless @current_user.present? %>
-           <%= link_to "Sign Up", new_user_path%>  |
-           <%= link_to "Login", login_path%>
-         <% else %>
-           <%= link_to "Appointments", appointments_path%>  |
-           <%= link_to "Edit Profile", edit_user_path() %>  |
-           <%= link_to "Logout #{@current_user.email}", login_path, :method => :delete %>
-         <% end %>
-
-  <% if flash[:success] %>
-    <h5>
-      <%= flash[:success] %>
-    </h5>
-  <% end %>
-
-  <% if flash[:error] %>
-    <h5>
-      <%= flash[:error] %>
-    </h5>
-  <% end %>
-    <h1><div class="logo"></div></h1>
-
-
-    <div id="content">
-      <%= yield %>
+  <nav>
+    <div class="nav-wrapper blue darken-3">
+      <a href="#!" class="brand-logo"><%= image_tag( "aa_logo.png", :class => "logo" ) %></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+          <li>
+              <%= link_to "Home", root_path%>
+          </li>
+          <li>
+              <%= link_to "Services", appointment_types_path%>
+          </li>
+          <li>
+              <%= link_to "Professionals", users_path%>
+          </li>
+          <% unless @current_user.present? %>
+          <li>
+              <%= link_to "Sign Up", new_user_path%>
+          </li>
+          <li>
+              <%= link_to "Login", login_path%>
+          </li>
+          <% else %>
+          <li>
+              <%= link_to "Appointments", appointments_path%>
+          </li>
+          <li>
+              <%= link_to "Edit Profile", edit_user_path() %>
+          </li>
+          <li>
+              <%= link_to "Logout #{@current_user.email}", login_path, :method => :delete %>
+          </li>
+          <% end %>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+          <li>
+              <%= link_to "Home", root_path%>
+          </li>
+          <li>
+              <%= link_to "Services", appointment_types_path%>
+          </li>
+          <li>
+              <%= link_to "Professionals", users_path%>
+          </li>
+          <% unless @current_user.present? %>
+          <li>
+              <%= link_to "Sign Up", new_user_path%>
+          </li>
+          <li>
+              <%= link_to "Login", login_path%>
+          </li>
+          <% else %>
+          <li>
+              <%= link_to "Appointments", appointments_path%>
+          </li>
+          <li>
+              <%= link_to "Edit Profile", edit_user_path() %>
+          </li>
+          <li>
+              <%= link_to "Logout #{@current_user.email}", login_path, :method => :delete %>
+          </li>
+          <% end %>
+      </ul>
     </div>
+  </nav>
 
-  </div>
 
-</body>
-<script type="text/javascript">
-$(document).ready(function(){
-  $('#navigation a, #fixedbar a').on('click', function(e) {
-    e.preventDefault();
-  });
+            <% if flash[:success] %>
+            <h5>
+                <%= flash[:success] %>
+            </h5>
+            <% end %>
 
-  $(window).on('scroll',function() {
-    var scrolltop = $(this).scrollTop();
+            <% if flash[:error] %>
+            <h5>
+                <%= flash[:error] %>
+            </h5>
+            <% end %>
+            <h1>
+                <!-- <div class="logo"></div> -->
+            </h1>
 
-    if(scrolltop >= 215) {
-      $('#fixedbar').fadeIn(250);
-    }
+            <div id="content">
+                <%= yield %>
+            </div>
 
-    else if(scrolltop <= 210) {
-      $('#fixedbar').fadeOut(250);
-    }
-  });
-});
-</script>
+        </div>
+        <div class="col m2 s0"></div>
+     </div>
+    </body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#navigation a, #fixedbar a').on('click', function (e) {
+                e.preventDefault();
+            });
+
+            $(window).on('scroll', function () {
+                var scrolltop = $(this).scrollTop();
+
+                if (scrolltop >= 215) {
+                    $('#fixedbar').fadeIn(250);
+                } else if (scrolltop <= 210) {
+                    $('#fixedbar').fadeOut(250);
+                }
+            });
+        });
+    </script>
 </html>

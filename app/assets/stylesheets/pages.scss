@@ -1,10 +1,20 @@
 .logo {
-  height: 150px;
-  width: 150px;
-  background-image: url(aa_logo.png);
-  background-size: contain;
+  height: 60px;
+  max-height: 150px;
+  max-width: 150px;
 }
-p .spans_description {
-  font-weight: bold;
-  font-size: 40px;
+a {
+  color: darkblue;
+}
+.full_screen {
+  height: 100%;
+  min-height: 100vh;
+  background-color: rgba(50, 0, 255, 0.1);
+}
+.collection {
+  border: none;
+}
+nav {
+  background: none;
+  border-radius: 10px;
 }
