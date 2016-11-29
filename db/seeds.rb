@@ -7,17 +7,17 @@ u2 = User.create :first_name => "Pez", :last_name => "Bradley", :email => "pez@g
 u3 = User.create :first_name => "Harpo", :last_name => "Marx", :email => "harpo@marx.com", :phone => "1800-555-555", :password => "chicken", :password_confirmation => "chicken", :is_professional => false
 u4 = User.create :first_name => "Groucho", :last_name => "Marx", :email => "groucho@marx.com", :phone => "1800-555-555", :password => "chicken", :password_confirmation => "chicken", :is_professional => false
 
-i = 0
-while i < 50
-  u = User.create :first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name, :email => Faker::Internet.email, :phone => Faker::Number.number(10).to_s, :password => "chicken", :password_confirmation => "chicken", :is_professional => false, :image => Faker::Avatar.image("my-own-slug", "50x50")
-  i += 1
-end
-
-x = 0
-while x < 10
-  u = User.create :first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name, :email => Faker::Internet.email, :phone => Faker::Number.number(10).to_s, :password => "chicken", :password_confirmation => "chicken", :is_professional => true, :profession => Faker::Superhero.name, :image => Faker::Avatar.image("my-own-slug", "70x70")
-  x += 1
-end
+# i = 0
+# while i < 50
+#   u = User.create :first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name, :email => Faker::Internet.email, :phone => Faker::Number.number(10).to_s, :password => "chicken", :password_confirmation => "chicken", :is_professional => false, :image => Faker::Avatar.image("my-own-slug", "50x50")
+#   i += 1
+# end
+#
+# x = 0
+# while x < 10
+#   u = User.create :first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name, :email => Faker::Internet.email, :phone => Faker::Number.number(10).to_s, :password => "chicken", :password_confirmation => "chicken", :is_professional => true, :profession => Faker::Superhero.name, :image => Faker::Avatar.image("my-own-slug", "70x70")
+#   x += 1
+# end
 
 puts "\tUser count: #{ User.all.count }"
 
