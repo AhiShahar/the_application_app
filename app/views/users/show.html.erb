@@ -10,12 +10,16 @@
     <li><%= @user.email %></li>
     <br>
     <li><%= @user.phone %></li>
-
 </ul>
+
+<% @user.meetings.each do |app| %>
+            <%=link_to app.start_time, edit_appointment_path(app) %>
+            <br>
+<% end %>
 <% if @current_user.id == params[:id].to_i %>
 <div class="controls">
-    <%= link_to "Edit Details", edit_user_path(@user) %>
-    |
+    <%= link_to "Create Appointment", new_appointment_path %>  |
+    <%= link_to "Edit Details", edit_user_path %>  |
     <%= link_to "Delete Account", user_path(@user), :method => :delete, :data => { :confirm => "Are you sure?" } %>
 </div>
 <% end %>

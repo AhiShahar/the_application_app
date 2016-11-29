@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     # We'll use this to display the index of the user (professional's) appointments index
     if @current_user
       @user = User.find_by :id => params[:id]
-      @appointments = @user.appointments 
     else
       flash[:error] = "You must sign in to continue"
       redirect_to login_path
@@ -50,7 +49,7 @@ class UsersController < ApplicationController
     # user = User.find_by :id => params[:id]
     user = @current_user
     user.destroy
-    redirect_to users_path()
+    redirect_to users_path
   end
 
   private

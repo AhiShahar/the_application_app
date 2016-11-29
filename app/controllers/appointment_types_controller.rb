@@ -17,7 +17,7 @@ class AppointmentTypesController < ApplicationController
   def destroy
     appointment_type = AppointmentType.find_by :id => params[:id]
     appointment_type.destroy
-    redirect_to appointment_types_path()
+    redirect_to appointment_types_path
   end
 
   def new

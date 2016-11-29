@@ -28,8 +28,9 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'acts_as_bookable'
 # Use Unicorn as the app server
 # gem 'unicorn'
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
+# gem 'bootstrap-sass', '~> 3.2.0'
+# gem 'autoprefixer-rails'
+gem 'materialize-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -47,6 +48,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'pry-rails'
   gem 'annotate'
+  gem 'faker'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
