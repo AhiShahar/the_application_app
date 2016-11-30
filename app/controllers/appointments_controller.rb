@@ -57,6 +57,12 @@ class AppointmentsController < ApplicationController
   def new
     @appointment = Appointment.new
     professional = User.find(@current_user.id)
+    if professional.meetings.last
+      last_appointment = professional.meetings.last.start_time
+    else
+      last_appointment = Time.now + 24.hours
+    end
+    @appointment.start_time = last_appointment + 15.minutes
     @appointment_types = professional.appointment_types
   end
 
@@ -69,8 +75,8 @@ class AppointmentsController < ApplicationController
 
   def index
     if @current_user
-      appointments = Appointment.where( "professional_id = #{@current_user.id} OR customer_id = #{@current_user.id}" )
-      @appointments = appointments.uniq.sort_by {|app| app.start_time}
+      @appointments = Appointment.where( "professional_id = #{@current_user.id} OR customer_id = #{@current_user.id}" )
+      # @appointments = appointments.uniq.sort_by {|app| app.start_time }
     end
   end
 

@@ -18,8 +18,10 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :appointments, :foreign_key => "customer_id"
+
   has_many :meetings, :class_name => "Appointment", :foreign_key => "professional_id"
   # has_many :customers, :class_name => "User", :through => :appointments
   has_many :appointment_types
+
 
 end
