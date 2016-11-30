@@ -1,21 +1,35 @@
-<h3>Services:</h3>
+<div class="row">
+    <div class="col s10 m6">
+    <h3>Services:</h3>
+</div>
+<div class="col s10 m6">
+    <nav>
+        <div class="nav-wrapper">
+            <%= form_tag "/search", :method => "GET" do %>
+                <div class="input-field">
+                    <%= text_field_tag :search, "", :placeholder => "Search", :required => true %>
+                </div>
+            <% end %>
+        </div>
+    </nav>
+</div>
+</div>
 <br>
-<% @appointment_types.all.each do |app| %>
-  <div class="row">
-    <div class="collection col s12 m12">
-      <%= link_to user_path(app.user.id), :class => "collection-item" do %>
-        <span class="badge"><%= app.name %></span>Service:
-      <% end %>
-      <%= link_to user_path(app.user.id), :class => "collection-item" do %>
-        <span class="badge"><%= app.description %></span>Description:
-      <% end %>
-      <%= link_to user_path(app.user.id), :class => "collection-item" do %>
-        <span class="badge"><%= app.duration %></span>Duration:
-      <% end %>
-      <%= link_to user_path(app.user.id), :class => "collection-item" do %>
-        <span class="badge"><%= app.user.first_name %></span>By:
-      <% end %>
-    </div>
-  </div>
-
+<div class="row">
+<% @appointment_types.each do |app| %>
+<div class="collection col s12 m6">
+    <%= link_to user_path(app.user.id), :class => "collection-item" do %>
+    <span class="badge"><%= app.name %></span>Service:
+    <% end %>
+    <%= link_to user_path(app.user.id), :class => "collection-item" do %>
+    <span class="badge"><%= app.description %></span>Description:
+    <% end %>
+    <%= link_to user_path(app.user.id), :class => "collection-item" do %>
+    <span class="badge"><%= app.duration %></span>Duration:
+    <% end %>
+    <%= link_to user_path(app.user.id), :class => "collection-item" do %>
+    <span class="badge"><%= app.user.first_name %></span>By:
+    <% end %>
+</div>
 <% end %>
+</div>

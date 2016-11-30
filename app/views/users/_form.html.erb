@@ -11,7 +11,7 @@
   </ul>
 <% end %>
 
-<%= form_for @user do |f| %>
+<%= form_for(@user, :html => {:multipart => true} )do |f| %>
   <p>
     <%= f.label :first_name %>
     <%= f.text_field :first_name, :required => true %>
@@ -27,6 +27,10 @@
   <p>
     <%= f.label :email %>
     <%= f.email_field :email, :required => true %>
+  </p>
+  <p>
+    <%= f.label :image %>
+    <%= f.cl_image_upload :image %>
   </p>
   <p>
     <%= f.label :password %>
@@ -46,4 +50,7 @@
   </p>
 
   <%= f.submit %>
+  <% if @current_user && @current_user.is_professional == false %>
+  <%= link_to "Delete Account", user_path(@current_user), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+  <% end %>
 <% end %>

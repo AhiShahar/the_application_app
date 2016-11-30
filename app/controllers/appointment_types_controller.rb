@@ -33,6 +33,17 @@ class AppointmentTypesController < ApplicationController
     @appointment_types = AppointmentType.all
   end
 
+  def search
+    # params[:search]
+    @appointment_types = []
+    AppointmentType.all.each do |app|
+      if app.description.to_s.include? params[:search]
+        @appointment_types << app
+      end
+    end
+    render :index
+  end
+
   private
     def appointment_type_params
       params.require(:appointment_type).permit(:name, :user_id, :duration, :price, :description)

@@ -18,3 +18,15 @@ nav {
   background: none;
   border-radius: 10px;
 }
+.nav-wrapper {
+  border-radius: 10px;
+}
+.controls {
+  margin-top: 50px;
+}
+.dropdown-button {
+  background-color: rgba(50, 0, 255, 0.4);
+}
+.dropdown-button:hover {
+  background-color: rgba(50, 0, 255, 0.6);
+}

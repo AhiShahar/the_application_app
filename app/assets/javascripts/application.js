@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require ckeditor/init
 //= require materialize
 //= require_tree .

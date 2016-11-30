@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     # We'll use this to display the index of the user (professional's) appointments index
     if @current_user
       @user = User.find_by :id => params[:id]
+      @calendar = @user.meetings.pluck(:start_time).map { |a| a.strftime "%d-%m-%Y" }.uniq
     else
       flash[:error] = "You must sign in to continue"
       redirect_to login_path
@@ -22,6 +23,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @user.image = req['public_id']
+    end
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path( @user )
@@ -38,7 +43,12 @@ class UsersController < ApplicationController
   def update
     # @user = User.find_by :id => params[:id]
     @user = @current_user
-    if @user.update user_params
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @user.image = req['public_id']
+    end
+    @user.assign_attributes user_params
+    if @user.save
       redirect_to @user
     else
       render :edit
@@ -58,10 +68,11 @@ class UsersController < ApplicationController
   end
 
   def approve_relation
-    relations = WorkRelation.where :professional_id => @professional.id, :customer_id => @current_user.id
+    @customer = User.find_by :id => params[:id]
+    relations = WorkRelation.find_by :professional_id => @current_user.id, :customer_id => @customer.id
     relations.approved = true
     relations.save
-    redirect_to @professional
+    redirect_to @current_user
   end
 
   def approved
@@ -76,7 +87,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :phone, :password, :password_confirmation, :is_professional, :profession)
+      params.require(:user).permit(:first_name, :last_name, :email, :phone, :password, :password_confirmation, :is_professional, :profession, :image)
     end
 
     def authorise
