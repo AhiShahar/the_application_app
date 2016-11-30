@@ -48,6 +48,10 @@
     <%= f.label :profession %>
     <%= f.text_field :profession %>
   </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.cktext_area :description, value: '', id: 'sometext'%>
+  </p>
 
   <%= f.submit %>
   <% if @current_user && @current_user.is_professional == false %>

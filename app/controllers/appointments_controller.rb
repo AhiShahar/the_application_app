@@ -23,7 +23,7 @@ class AppointmentsController < ApplicationController
     appointment.customer_id = @current_user.id
     appointment.available = false
     appointment.update appointment_params
-    redirect_to appointment
+    redirect_to appointments_path
   end
 
   def destroy
@@ -70,7 +70,7 @@ class AppointmentsController < ApplicationController
     appointment = Appointment.new appointment_params
     appointment.professional_id = @current_user.id
     appointment.save
-    redirect_to appointment
+    redirect_to appointments_path
   end
 
   def index

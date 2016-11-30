@@ -12,15 +12,11 @@
         <%= javascript_include_tag Ckeditor.cdn_url %>
     </head>
     <body>
-      <div class="full_screen row">
-        <div class="col m2 s0"></div>
-        <div class="container col m8 s12">
 
-  <nav>
+  <nav class="row">
     <div class="nav-wrapper blue darken-3">
-      <a href="#!" class="brand-logo"><%= image_tag( "aa_logo.png", :class => "logo" ) %></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
+      <ul class="left hide-on-med-and-down">
           <li>
               <%= link_to "Home", root_path%>
           </li>
@@ -78,9 +74,13 @@
           </li>
           <% end %>
       </ul>
-    </div>
+      <a href="/home" class="brand-logo right theaa"><h3>theaa</h3> </a>
+      <%= link_to(image_tag( "aa_logo.png", :class => "logo" ), user_path(@current_user)) %>
+      </div>
   </nav>
-
+  <div class="full_screen row">
+    <div class="col m1 s0"></div>
+    <div class="container col m10 s12">
 
             <% if flash[:success] %>
             <h5>
@@ -102,7 +102,7 @@
             </div>
 
         </div>
-        <div class="col m2 s0"></div>
+        <div class="col m1 s0"></div>
      </div>
     </body>
     <script type="text/javascript">

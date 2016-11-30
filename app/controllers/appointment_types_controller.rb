@@ -1,7 +1,7 @@
 class AppointmentTypesController < ApplicationController
 
   def show
-    @appointment_types = AppointmentType.find_by :id => params[:id]
+    @appointment_types = AppointmentType.where :user_id => params[:id]
   end
 
   def edit
@@ -25,7 +25,10 @@ class AppointmentTypesController < ApplicationController
   end
 
   def create
-    appointment_type = AppointmentType.create appointment_type_params
+    appointment_type = AppointmentType.new
+    appointment_type.update appointment_type_params
+    appointment_type.user_id = @current_user.id
+    appointment_type.save
     redirect_to appointment_type
   end
 
@@ -46,7 +49,7 @@ class AppointmentTypesController < ApplicationController
 
   private
     def appointment_type_params
-      params.require(:appointment_type).permit(:name, :user_id, :duration, :price, :description)
+      params.require(:appointment_type).permit(:name, :duration, :price, :description)
     end
     #  name        :string
     #  description :text

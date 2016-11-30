@@ -9,17 +9,20 @@ a {
 .full_screen {
   height: 100%;
   min-height: 100vh;
-  background-color: rgba(50, 0, 255, 0.1);
+  background-color: rgba(210, 210, 255, 0.1);
 }
 .collection {
   border: none;
 }
+h1, h3, h2{
+  font-family: "Baloo Bhaina";
+}
+h2 {
+  font-size: 90px;
+  text-align: center;
+}
 nav {
   background: none;
-  border-radius: 10px;
-}
-.nav-wrapper {
-  border-radius: 10px;
 }
 .controls {
   margin-top: 50px;
@@ -29,4 +32,16 @@ nav {
 }
 .dropdown-button:hover {
   background-color: rgba(50, 0, 255, 0.6);
+}
+.dropdown-button:active {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+h5 {
+  font-family: monospace;
+}
+a.btn {
+  color: black;
+  font-family: monospace;
+  font-weight: bold;
+  margin-top: 10px;
 }
