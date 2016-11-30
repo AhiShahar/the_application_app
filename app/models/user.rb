@@ -23,5 +23,37 @@ class User < ActiveRecord::Base
   # has_many :customers, :class_name => "User", :through => :appointments
   has_many :appointment_types
 
+  has_many :relation_customers, :foreign_key => "professional_id", :class_name => "WorkRelation"
+  has_many :relation_professionals, :foreign_key => "customer_id", :class_name => "WorkRelation"
+
+  has_many :customers, :through => :relation_customers
+  has_many :professionals, :through => :relation_professionals
+
+  # u = User.first
+  # u.unapproved_customers
+
+  def unapproved_customers
+    self.relation_customers.where(:approved => false)
+  end
+
+  def approved_customers
+    self.relation_customers.where(:approved => true)
+  end
+
+  # u = User.first
+  # u.is_approved_customer?( 136)
+
+  def is_approved_customer?( id )
+    current_user = self
+    customer = WorkRelation.find_by(
+      :professional_id => id,
+      :customer_id => current_user.id,
+      :approved => true
+    )
+    if customer
+      return true
+    end
+    false
+  end
 
 end

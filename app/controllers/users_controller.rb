@@ -45,6 +45,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def new_relation
+    @professional = User.find_by :id => params[:id]
+    relations = WorkRelation.create :professional_id => @professional.id, :customer_id => @current_user.id
+    relations.save
+    redirect_to @professional
+  end
+
+  def unapproved
+    @users = @current_user.unapproved_customers
+    render :index
+  end
+
+  def approve_relation
+    relations = WorkRelation.where :professional_id => @professional.id, :customer_id => @current_user.id
+    relations.approved = true
+    relations.save
+    redirect_to @professional
+  end
+
+  def approved
+  end
+
   def destroy
     # user = User.find_by :id => params[:id]
     user = @current_user

@@ -76,7 +76,6 @@ class AppointmentsController < ApplicationController
   def index
     if @current_user
       @appointments = Appointment.where( "professional_id = #{@current_user.id} OR customer_id = #{@current_user.id}" )
-      # @appointments = appointments.uniq.sort_by {|app| app.start_time }
     end
   end
 
