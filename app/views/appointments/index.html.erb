@@ -17,9 +17,9 @@
                     <p><%= app.professional.first_name %></p>
                   <% elsif app.customer %>
                     <p><%= app.customer.first_name %>, <%= app.professional.last_name %></p>
+                  <% elsif !app.customer %>
+                    <p>Available</p>
                   <% end %>
-                <% else %>
-                  Available
                 <% end %>
               </p>
             </div>

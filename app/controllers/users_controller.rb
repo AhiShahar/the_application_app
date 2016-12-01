@@ -23,8 +23,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    if params[:file].present?
-      req = Cloudinary::Uploader.upload(params[:file])
+    if params[:image].present?
+      req = Cloudinary::Uploader.upload(params[:image])
       @user.image = req['public_id']
     end
     if @user.save
@@ -43,10 +43,21 @@ class UsersController < ApplicationController
   def update
     # @user = User.find_by :id => params[:id]
     @user = @current_user
-    if params[:file].present?
-      req = Cloudinary::Uploader.upload(params[:file])
+    # if params[:image].present?
+      req = Cloudinary::Uploader.upload(params[:image],
+                            :public_id => "sample_id",
+                            :crop => :limit, :width => 2000, :height => 2000,
+                            :eager => [
+                              { :width => 200, :height => 200,
+                                :crop => :thumb, :gravity => :face,
+                                :radius => 20, :effect => :sepia },
+                              { :width => 100, :height => 150,
+                                :crop => :fit, :format => 'png' }
+                            ],
+                            :tags => ['special', 'for_homepage'])
       @user.image = req['public_id']
-    end
+      # @user.save
+    # end
     @user.assign_attributes user_params
     if @user.save
       redirect_to @user

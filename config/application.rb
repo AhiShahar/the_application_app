@@ -22,10 +22,13 @@ module TheAppointmentApp
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w( ckeditor/* )
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
   class ApplicationController < ActionController::Base
-  before_filter :set_time_zone, if: :user_signed_in?
-
+  before_filter :set_time_zone, if: @current_user
+  # :user_signed_in?
   private
 
     def set_time_zone
