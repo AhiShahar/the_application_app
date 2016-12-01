@@ -65,4 +65,17 @@ class User < ActiveRecord::Base
     false
   end
 
+  def is_pending_customer?( id )
+    current_user = self
+    customer = WorkRelation.find_by(
+      :professional_id => id,
+      :customer_id => current_user.id,
+      :approved => false
+    )
+    if customer
+      return true
+    end
+    false
+  end
+
 end

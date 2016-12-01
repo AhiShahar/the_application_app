@@ -23,4 +23,13 @@ module TheAppointmentApp
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
+  class ApplicationController < ActionController::Base
+  before_filter :set_time_zone, if: :user_signed_in?
+
+  private
+
+    def set_time_zone
+      Time.zone = current_user.time_zone
+    end
+end
 end

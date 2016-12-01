@@ -12,120 +12,126 @@
         <%= javascript_include_tag Ckeditor.cdn_url %>
     </head>
     <body class="<%= params[:controller] %> <%= params[:action] %>">
-  <div class="row">
-  <nav>
-    <div class="nav-wrapper blue darken-3">
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="left hide-on-med-and-down">
-          <li>
-              <%= link_to "Home", root_path%>
-          </li>
-          <li>
-              <%= link_to "Services", appointment_types_path%>
-          </li>
-          <li>
-              <%= link_to "Professionals", users_path%>
-          </li>
-          <% unless @current_user.present? %>
-          <li>
-              <%= link_to "Sign Up", new_user_path%>
-          </li>
-          <li>
-              <%= link_to "Login", login_path%>
-          </li>
-          <% else %>
-          <li>
-              <%= link_to "Appointments", appointments_path%>
-          </li>
-          <li>
-              <%= link_to "Edit Profile", edit_user_path() %>
-          </li>
-          <li>
-              <%= link_to "Logout #{@current_user.email}", login_path, :method => :delete %>
-          </li>
-          <% end %>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-          <li>
-              <%= link_to "Home", root_path%>
-          </li>
-          <li>
-              <%= link_to "Services", appointment_types_path%>
-          </li>
-          <li>
-              <%= link_to "Professionals", users_path%>
-          </li>
-          <% unless @current_user.present? %>
-          <li>
-              <%= link_to "Sign Up", new_user_path%>
-          </li>
-          <li>
-              <%= link_to "Login", login_path%>
-          </li>
-          <% else %>
-          <li>
-              <%= link_to "Appointments", appointments_path%>
-          </li>
-          <li>
-              <%= link_to "Edit Profile", edit_user_path() %>
-          </li>
-          <li>
-              <%= link_to "Logout #{@current_user.email}", login_path, :method => :delete %>
-          </li>
-          <% end %>
-      </ul>
-      <a href="/home" class="brand-logo right theaa"><h3>theaa</h3> </a>
-      <% if @current_user %>
-        <%= link_to(image_tag( "waa_logo.png", :class => "logo left" ), user_path(@current_user)) %>
-      <% else %>
-        <%= link_to(image_tag( "waa_logo.png", :class => "logo" ), login_path) %>
-      <% end %>
-      </div>
-  </nav>
-  </div>
-  <div class="full_screen row">
-    <div class="col m1 s0"></div>
-    <div class="container col m10 s12">
-
-            <% if flash[:success] %>
-            <h5>
-                <%= flash[:success] %>
-            </h5>
-            <% end %>
-
-            <% if flash[:error] %>
-            <h5>
-                <%= flash[:error] %>
-            </h5>
-            <% end %>
-            <h1>
-                <!-- <div class="logo"></div> -->
-            </h1>
-
-            <div id="content">
-                <%= yield %>
-            </div>
-
+        <div class="row">
+            <nav>
+                <div class="nav-wrapper blue darken-3">
+                    <a href="#" data-activates="mobile-demo" class="button-collapse">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="left hide-on-med-and-down">
+                        <li>
+                            <%= link_to "Home", root_path%>
+                        </li>
+                        <li>
+                            <%= link_to "Services", appointment_types_path%>
+                        </li>
+                        <li>
+                            <%= link_to "Professionals", users_path%>
+                        </li>
+                        <% unless @current_user.present? %>
+                        <li>
+                            <%= link_to "Sign Up", new_user_path%>
+                        </li>
+                        <li>
+                            <%= link_to "Login", login_path%>
+                        </li>
+                    <% else %>
+                        <li>
+                            <%= link_to "Appointments", appointments_path%>
+                        </li>
+                        <li>
+                            <%= link_to "Edit Profile", edit_user_path() %>
+                        </li>
+                        <li>
+                            <%= link_to "Logout #{@current_user.email}", login_path, :method => :delete %>
+                        </li>
+                        <% end %>
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li>
+                            <%= link_to "Home", root_path%>
+                        </li>
+                        <li>
+                            <%= link_to "Services", appointment_types_path%>
+                        </li>
+                        <li>
+                            <%= link_to "Professionals", users_path%>
+                        </li>
+                        <% unless @current_user.present? %>
+                        <li>
+                            <%= link_to "Sign Up", new_user_path%>
+                        </li>
+                        <li>
+                            <%= link_to "Login", login_path%>
+                        </li>
+                    <% else %>
+                        <li>
+                            <%= link_to "Appointments", appointments_path%>
+                        </li>
+                        <li>
+                            <%= link_to "Edit Profile", edit_user_path() %>
+                        </li>
+                        <li>
+                            <%= link_to "Logout #{@current_user.email}", login_path, :method => :delete %>
+                        </li>
+                        <% end %>
+                    </ul>
+                    <a href="/home" class="brand-logo right theaa">
+                        <h3>theaa</h3>
+                    </a>
+                    <% if @current_user %>
+                    <%= link_to(image_tag( "waa_logo.png", :class => "logo left" ), user_path(@current_user)) %>
+                <% else %>
+                    <%= link_to(image_tag( "waa_logo.png", :class => "logo" ), login_path) %>
+                    <% end %>
+                </div>
+            </nav>
         </div>
-        <div class="col m1 s0"></div>
-     </div>
-     <footer class="page-footer grey darken-3">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                </ul>
-              </div>
+        <div class="full_screen row">
+            <div class="col m1 s0"></div>
+            <div class="container col m10 s12">
+
+                <% if flash[:success] %>
+                <h5>
+                    <%= flash[:success] %>
+                </h5>
+                <% end %>
+
+                <% if flash[:error] %>
+                <h5>
+                    <%= flash[:error] %>
+                </h5>
+                <% end %>
+                <h1>
+                    <!-- <div class="logo"></div> -->
+                </h1>
+
+                <div id="content">
+                    <%= yield %>
+                </div>
+
             </div>
-          </div>
-          <div class="footer-copyright">
-            © 2016 GA static production DO NOT FING COPY MY SHIT
-          </div>
+            <div class="col m1 s0"></div>
+        </div>
+        <footer class="page-footer grey darken-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li>
+                                <a class="grey-text text-lighten-3" href="#!">Link 1</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                © 2016 GA static production feel free to COPY MY SHIT
+            </div>
         </footer>
     </body>
     <script type="text/javascript">

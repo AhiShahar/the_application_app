@@ -6,27 +6,31 @@
 
 <div class="row">
     <div class="col s12 m3">
-        <% if @user == @current_user %>
-            <% if @user.is_professional? %>
-                <h5>Customer List</h5>
-                <% @user.approved_customers.each do |c| %>
-                <p><%= link_to c.customer.first_name, user_path(c.customer_id) %></p>
-                <% end %>
-            <% else %>
-                <h5>Professional List</h5>
-                <% @user.approved_professionals.each do |c| %>
-                <p><%= link_to "#{c.professional.first_name} - #{c.professional.profession}", user_path(c.professional_id)%></p>
-                <% end %>
-            <% end %>
-        <% end %>
+
     </div>
     <div class="col s12 m6">
+        <% index = 1 %>
+        <%= week_calendar number_of_weeks: 4 do |date| %>
+            <%= link_to("#{date.strftime("%d")}", "#", :class => "dropdown-button", :data => {:activates => "dropdown#{index}"}) %>&nbsp;
+            <% count = 1 %>
+            <ul id='dropdown<%= index %>' class='dropdown-content'>
+                <% @user.meetings.each do |app| %>
+                    <% if app.available && date.strftime("%d-%m-%Y") == app.start_time.strftime("%d-%m-%Y") %>
+                        <li><%=link_to app.start_time.strftime("%I:%M %p"), edit_appointment_path(app) %></li>
+                        <li class="divider"></li>
+                        <% count += 1%>
+                    <% end %>
+                <% end %>
+            </ul>
+            <% if count > 1 %>
+                <%= image_tag "yes.png", :class=>"yes-no" %>
+            <% else %>
+            <%= image_tag "no.png", :class=>"yes-no" %>
+            <% end %>
+            <% index += 1 %>
+        <% end %>
 
-      <%= week_calendar number_of_weeks: 2 do |date| %>
-<%= date %>
-<% end %>
-
-        <% unless @current_user.present? && (@current_user.is_approved_customer?(@user.id) || @current_user == @user) %>
+        <% if @current_user.present? && (!@current_user.is_approved_customer?(@user.id) && @current_user != @user) && (@user.is_professional?) && !@current_user.is_pending_customer?(@user.id) %>
         <%= link_to("Register to Professional", new_relation_path( @user )) %>
         <% end %>
         <br>
@@ -45,19 +49,7 @@
         </ul>
 
         <% if @current_user.present? && (@current_user.is_approved_customer?( @user.id ) || @current_user == @user ) %>
-        <% @calendar.each_with_index do |date, index| %>
-        <a class='dropdown-button btn' href='#' data-activates='dropdown<%= index + 1 %>'>
-            <%= date %>
-        </a>&nbsp;
-        <ul id='dropdown<%= index + 1 %>' class='dropdown-content'>
-            <% @user.meetings.each do |app| %>
-            <% if app.available && date == app.start_time.strftime("%d-%m-%Y") %>
-            <li><%=link_to app.start_time.strftime("%I:%M %p"), edit_appointment_path(app) %></li>
-            <li class="divider"></li>
-            <% end %>
-            <% end %>
-        </ul>
-        <% end %>
+
         <% if @current_user.id == params[:id].to_i %>
         <div class="controls">
             <% if @current_user.is_professional? %>
@@ -71,21 +63,34 @@
         <% end %>
         <% end %>
 
-
     </div>
     <div class="col s12 m3">
         <% if @user == @current_user %>
-            <% if @user.is_professional? %>
-                <h5>Pending Customers</h5>
-                <% @user.unapproved_customers.each do |c| %>
-                <p><%= link_to c.customer.first_name, approve_relation_path( c.customer ) %></p>
-                <% end %>
-            <% else %>
-                <h5>Pending Approval</h5>
-                <% @user.pending_response.each do |c| %>
-                <p><%= "#{c.professional.first_name} - #{c.professional.profession}"%></p>
-                <% end %>
-            <% end %>
+        <% if @user.is_professional? %>
+        <h5>Customer List</h5>
+        <% @user.approved_customers.each do |c| %>
+        <p><%= link_to c.customer.first_name, user_path(c.customer_id) %></p>
+        <% end %>
+    <% else %>
+        <h5>Professional List</h5>
+        <% @user.approved_professionals.each do |c| %>
+        <p><%= link_to "#{c.professional.first_name} - #{c.professional.profession}", user_path(c.professional_id)%></p>
+        <% end %>
+        <% end %>
+        <% end %>
+
+        <% if @user == @current_user %>
+        <% if @user.is_professional? %>
+        <h5>Pending Customers</h5>
+        <% @user.unapproved_customers.each do |c| %>
+        <p><%= link_to c.customer.first_name, approve_relation_path( c.customer ) %></p>
+        <% end %>
+    <% else %>
+        <h5>Pending Approval</h5>
+        <% @user.pending_response.each do |c| %>
+        <p><%= "#{c.professional.first_name} - #{c.professional.profession}"%></p>
+        <% end %>
+        <% end %>
         <% end %>
     </div>
 

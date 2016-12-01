@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     # We'll use this to display the index of the user (professional's) appointments index
     if @current_user
       @user = User.find_by :id => params[:id]
-      @calendar = @user.meetings.pluck(:start_time).map { |a| a.strftime "%d-%m-%Y" }.uniq
+      @calendar = @user.meetings.where( :available => true).pluck(:start_time).map { |a| a.strftime "%d-%m-%Y" }.uniq
     else
       flash[:error] = "You must sign in to continue"
       redirect_to login_path
@@ -73,9 +73,6 @@ class UsersController < ApplicationController
     relations.approved = true
     relations.save
     redirect_to @current_user
-  end
-
-  def approved
   end
 
   def destroy

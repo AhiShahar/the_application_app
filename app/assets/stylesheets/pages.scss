@@ -1,10 +1,12 @@
-
 body.pages.home {
   background-image: url("aa_logo.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   position: static;
+}
+body {
+  margin-bottom: 125px;
 }
 nav {
   position: fixed;
@@ -88,11 +90,11 @@ h4.sub-title {
   font-family: monospace;
   text-shadow: 50px 50px 30px #000;
 }
-
-.home-container{
+div#content{
   margin-top: -30px;
   background-color: rgba(255,255,255,0.8);
   height: 100%;
+  padding-top: 40px;
   min-height: 100vh;
   min-width: 100vh;
 }
@@ -114,4 +116,16 @@ footer div.row {
 
 div div div a.waves-effect.btn{
  padding: 0 5px;
+}
+#content div div div div a {
+  font-family: "Baloo Bhaina";
+  font-size: 20px;
+}
+
+.simple-calendar.calendar-heading.calendar-title {
+
+}
+.yes-no {
+  width: 20px;
+  height: 20px;
 }
