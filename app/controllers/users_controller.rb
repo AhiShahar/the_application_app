@@ -43,10 +43,14 @@ class UsersController < ApplicationController
   def update
     # @user = User.find_by :id => params[:id]
     @user = @current_user
-    # if params[:image].present?
-      req = Cloudinary::Uploader.upload(params[:image],
-                            :public_id => "sample_id",
-                            :crop => :limit, :width => 2000, :height => 2000,
+    if params[:file].present?
+      if @user.image
+        @user.image = ""
+        @user.save
+      end
+      req = Cloudinary::Uploader.upload(params[:file],
+                            :public_id => "#{(@current_user.image.to_i+1).to_s}",
+                            :crop => :limit, :width => 200, :height => 400,
                             :eager => [
                               { :width => 200, :height => 200,
                                 :crop => :thumb, :gravity => :face,
@@ -56,8 +60,7 @@ class UsersController < ApplicationController
                             ],
                             :tags => ['special', 'for_homepage'])
       @user.image = req['public_id']
-      # @user.save
-    # end
+    end
     @user.assign_attributes user_params
     if @user.save
       redirect_to @user
@@ -95,7 +98,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :phone, :password, :password_confirmation, :is_professional, :profession, :description, :image)
+      params.require(:user).permit(:first_name, :last_name, :email, :phone, :password, :password_confirmation, :is_professional, :profession, :description, :file)
     end
 
     def authorise
