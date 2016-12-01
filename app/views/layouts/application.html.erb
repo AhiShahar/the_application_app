@@ -8,12 +8,12 @@
         <meta name="viewport" content="initial-scale=1.0, width=device-width">
         <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
         <link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Capriola">
-        <%= cloudinary_js_config %>
+
         <%= javascript_include_tag Ckeditor.cdn_url %>
     </head>
-    <body>
-
-  <nav class="row">
+    <body class="<%= params[:controller] %> <%= params[:action] %>">
+  <div class="row">
+  <nav>
     <div class="nav-wrapper blue darken-3">
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="left hide-on-med-and-down">
@@ -75,9 +75,14 @@
           <% end %>
       </ul>
       <a href="/home" class="brand-logo right theaa"><h3>theaa</h3> </a>
-      <%= link_to(image_tag( "aa_logo.png", :class => "logo" ), user_path(@current_user)) %>
+      <% if @current_user %>
+        <%= link_to(image_tag( "waa_logo.png", :class => "logo left" ), user_path(@current_user)) %>
+      <% else %>
+        <%= link_to(image_tag( "waa_logo.png", :class => "logo" ), login_path) %>
+      <% end %>
       </div>
   </nav>
+  </div>
   <div class="full_screen row">
     <div class="col m1 s0"></div>
     <div class="container col m10 s12">
@@ -104,6 +109,24 @@
         </div>
         <div class="col m1 s0"></div>
      </div>
+     <footer class="page-footer grey darken-3">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            © 2016 GA static production DO NOT FING COPY MY SHIT
+          </div>
+        </footer>
     </body>
     <script type="text/javascript">
         $(document).ready(function () {

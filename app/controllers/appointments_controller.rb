@@ -62,7 +62,8 @@ class AppointmentsController < ApplicationController
     else
       last_appointment = Time.now + 24.hours
     end
-    @appointment.start_time = last_appointment + 15.minutes
+    duration = professional.appointment_types.first.duration
+    @appointment.start_time = last_appointment + duration.minutes
     @appointment_types = professional.appointment_types
   end
 
@@ -70,7 +71,11 @@ class AppointmentsController < ApplicationController
     appointment = Appointment.new appointment_params
     appointment.professional_id = @current_user.id
     appointment.save
-    redirect_to appointments_path
+    if appointment.professional_id == @current_user.id
+      redirect_to new_appointment_path
+    else
+      redirect_to appointments_path
+    end
   end
 
   def index

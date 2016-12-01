@@ -1,5 +1,4 @@
-$(document).on("ready turbolinks:load", function() {
-
+$(document).on("ready", function() {
 
   $('select').material_select();
   $(".button-collapse").sideNav();

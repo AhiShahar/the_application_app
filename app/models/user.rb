@@ -41,6 +41,14 @@ class User < ActiveRecord::Base
     self.relation_customers.where(:approved => true)
   end
 
+  def approved_professionals
+    self.relation_professionals.where(:approved => true)
+  end
+
+  def pending_response
+    self.relation_professionals.where(:approved => false)
+  end
+
   # u = User.first
   # u.is_approved_customer?( 136)
 

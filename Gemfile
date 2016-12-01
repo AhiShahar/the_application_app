@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "simple_calendar", "~> 2.0"
 gem 'ckeditor'
 gem 'cloudinary'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

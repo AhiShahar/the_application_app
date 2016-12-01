@@ -7,15 +7,27 @@
 <div class="row">
     <div class="col s12 m3">
         <% if @user == @current_user %>
-        <h5>Customer List</h5>
-        <% @user.approved_customers.each do |c| %>
-        <p><%= c.customer.first_name %></p>
-        <% end %>
+            <% if @user.is_professional? %>
+                <h5>Customer List</h5>
+                <% @user.approved_customers.each do |c| %>
+                <p><%= link_to c.customer.first_name, user_path(c.customer_id) %></p>
+                <% end %>
+            <% else %>
+                <h5>Professional List</h5>
+                <% @user.approved_professionals.each do |c| %>
+                <p><%= link_to "#{c.professional.first_name} - #{c.professional.profession}", user_path(c.professional_id)%></p>
+                <% end %>
+            <% end %>
         <% end %>
     </div>
     <div class="col s12 m6">
+
+      <%= week_calendar number_of_weeks: 2 do |date| %>
+<%= date %>
+<% end %>
+
         <% unless @current_user.present? && (@current_user.is_approved_customer?(@user.id) || @current_user == @user) %>
-        <%= link_to "Register to Professional", new_relation_path( @user ) %>
+        <%= link_to("Register to Professional", new_relation_path( @user )) %>
         <% end %>
         <br>
         <ul>
@@ -26,7 +38,9 @@
             <li><%= @user.phone %></li>
             <% end %>
             <li><%= @user.email %></li>
+            <% if @user.description %>
             <div><%= @user.description.html_safe %></div>
+            <% end %>
             <br>
         </ul>
 
@@ -37,7 +51,7 @@
         </a>&nbsp;
         <ul id='dropdown<%= index + 1 %>' class='dropdown-content'>
             <% @user.meetings.each do |app| %>
-            <% if app.available && date == app.start_time.strftime("%A, %B %d, %Y") %>
+            <% if app.available && date == app.start_time.strftime("%d-%m-%Y") %>
             <li><%=link_to app.start_time.strftime("%I:%M %p"), edit_appointment_path(app) %></li>
             <li class="divider"></li>
             <% end %>
@@ -46,8 +60,10 @@
         <% end %>
         <% if @current_user.id == params[:id].to_i %>
         <div class="controls">
+            <% if @current_user.is_professional? %>
             <%= link_to "Create Appointment", new_appointment_path %>
             |
+            <% end %>
             <%= link_to "Edit Details", edit_user_path %>
             |
             <%= link_to "Delete Account", user_path(@user), :method => :delete, :data => { :confirm => "Are you sure?" } %>
@@ -55,13 +71,21 @@
         <% end %>
         <% end %>
 
+
     </div>
     <div class="col s12 m3">
         <% if @user == @current_user %>
-        <h5>Pending Customers</h5>
-        <% @user.unapproved_customers.each do |c| %>
-        <p><%= link_to c.customer.first_name, approve_relation_path( c.customer ) %></p>
-        <% end %>
+            <% if @user.is_professional? %>
+                <h5>Pending Customers</h5>
+                <% @user.unapproved_customers.each do |c| %>
+                <p><%= link_to c.customer.first_name, approve_relation_path( c.customer ) %></p>
+                <% end %>
+            <% else %>
+                <h5>Pending Approval</h5>
+                <% @user.pending_response.each do |c| %>
+                <p><%= "#{c.professional.first_name} - #{c.professional.profession}"%></p>
+                <% end %>
+            <% end %>
         <% end %>
     </div>
 

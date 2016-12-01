@@ -1,5 +1,7 @@
-<h3>Your Appointments:</h3><%= link_to "Create Appointment", new_appointment_path, :class => "waves-effect waves-light btn blue lighten-3" %>
-
+<h3>Your Appointments:</h3>
+<% if @current_user.is_professional? %>
+<%= link_to "Create Appointment", new_appointment_path, :class => "waves-effect waves-light btn blue lighten-3" %>
+<% end %>
 
 <div class="row">
   <% @appointments.each do |app| %>
