@@ -1,5 +1,5 @@
 body.pages.home {
-  background-image: url("/aa_logo.png");
+  background-image: image-url("aa_logo.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -76,7 +76,7 @@ a.btn {
 }
 .heading {
   font-size: 100px;
-  margin-top: 120px;
+  margin-top: 50px;
   font-family: "Baloo Bhaina";
   text-shadow: 50px 50px 20px #000;
 }
@@ -124,4 +124,7 @@ div div div a.waves-effect.btn{
 .yes-no {
   width: 20px;
   height: 20px;
+}
+.carousel-item {
+  cursor: alias;
 }
