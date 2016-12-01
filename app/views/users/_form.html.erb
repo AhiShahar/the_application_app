@@ -41,8 +41,8 @@
     <%= f.password_field :password_confirmation, :required => true %>
   </p>
   <p>
-    <%= f.label :professioanl %>
-    <%= f.text_field :is_professional %>
+    <%= f.check_box :is_professional, {:class => "browser-default"}, "true", "false" %>
+      <%= f.label :professional %>
   </p>
   <p>
     <%= f.label :profession %>

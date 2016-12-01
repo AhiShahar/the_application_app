@@ -6,6 +6,42 @@
 
 <div class="row">
     <div class="col s12 m3">
+        <% if @current_user.present? && (!@current_user.is_approved_customer?(@user.id) && @current_user != @user) && (@user.is_professional?) && !@current_user.is_pending_customer?(@user.id) %>
+        <%= link_to("Register to Professional", new_relation_path( @user )) %>
+        <% end %>
+        <br>
+        <ul>
+            <li><%= @user.last_name %>,
+                <%= @user.first_name %></li>
+            <br>
+            <% if @user.description %>
+            <div><%= @user.description.html_safe %></div>
+            <% end %>
+            <% if @user.image %>
+                <%= cl_image_tag @user.image %>
+            <% end %>
+            <% if @current_user.present? && (@current_user.is_approved_customer?( @user.id )|| @current_user == @user) %>
+            <li><%= @user.phone %></li>
+            <% end %>
+            <br>
+            <li><%= @user.email %></li>
+            <br>
+        </ul>
+
+        <% if @current_user.present? && (@current_user.is_approved_customer?( @user.id ) || @current_user == @user ) %>
+
+        <% if @current_user.id == params[:id].to_i %>
+        <div class="controls">
+            <% if @current_user.is_professional? %>
+            <%= link_to "Create Appointment", new_appointment_path %>
+            <br>
+            <% end %>
+            <%= link_to "Edit Account Details", edit_user_path %>
+            <br>
+            <%= link_to "Delete Account", user_path(@user), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+        </div>
+        <% end %>
+        <% end %>
 
     </div>
     <div class="col s12 m6">
@@ -29,40 +65,6 @@
             <% end %>
             <% index += 1 %>
         <% end %>
-
-        <% if @current_user.present? && (!@current_user.is_approved_customer?(@user.id) && @current_user != @user) && (@user.is_professional?) && !@current_user.is_pending_customer?(@user.id) %>
-        <%= link_to("Register to Professional", new_relation_path( @user )) %>
-        <% end %>
-        <br>
-        <ul>
-            <li><%= @user.last_name %>,
-                <%= @user.first_name %></li>
-            <br>
-            <% if @current_user.present? && (@current_user.is_approved_customer?( @user.id )|| @current_user == @user) %>
-            <li><%= @user.phone %></li>
-            <% end %>
-            <li><%= @user.email %></li>
-            <% if @user.description %>
-            <div><%= @user.description.html_safe %></div>
-            <% end %>
-            <br>
-        </ul>
-
-        <% if @current_user.present? && (@current_user.is_approved_customer?( @user.id ) || @current_user == @user ) %>
-
-        <% if @current_user.id == params[:id].to_i %>
-        <div class="controls">
-            <% if @current_user.is_professional? %>
-            <%= link_to "Create Appointment", new_appointment_path %>
-            |
-            <% end %>
-            <%= link_to "Edit Details", edit_user_path %>
-            |
-            <%= link_to "Delete Account", user_path(@user), :method => :delete, :data => { :confirm => "Are you sure?" } %>
-        </div>
-        <% end %>
-        <% end %>
-
     </div>
     <div class="col s12 m3">
         <% if @user == @current_user %>
