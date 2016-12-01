@@ -25,7 +25,6 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if params[:file].present?
       req = Cloudinary::Uploader.upload(params[:file],
-                            :public_id => "#{(@current_user.image.to_i+1).to_s}",
                             :crop => :limit, :width => 200, :height => 400,
                             :eager => [
                               { :width => 200, :height => 200,
@@ -59,7 +58,6 @@ class UsersController < ApplicationController
         @user.save
       end
       req = Cloudinary::Uploader.upload(params[:file],
-                            :public_id => "#{(@current_user.image.to_i+1).to_s}",
                             :crop => :limit, :width => 200, :height => 400,
                             :eager => [
                               { :width => 200, :height => 200,

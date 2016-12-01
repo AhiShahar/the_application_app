@@ -10,12 +10,9 @@
 <%#= image_tag( "aa_logo.png", :class => "home-logo" ) %>
 
 <div class="carousel">
-  <%= image_tag("a.png", :class => "carousel-item" ) %>
-  <%= image_tag("aa.png", :class => "carousel-item" ) %>
-  <%= image_tag("aaa.png", :class => "carousel-item" ) %>
-  <%= image_tag("aaaaa.png", :class => "carousel-item" ) %>
-  <%= image_tag("aaaaaaa.png", :class => "carousel-item" ) %>
-
+  <% @images.each do |image| %>
+  <%= cl_image_tag("#{image}", :class => "carousel-item" ) %>
+  <% end %>
   </div>
 
 
