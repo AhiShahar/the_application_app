@@ -13,6 +13,11 @@
               <p>
                 <% if app.appointment_type %>
                   <%= app.appointment_type.name %>
+                  <% if app.customer == @current_user %>
+                    <p><%= app.professional.first_name %></p>
+                  <% elsif app.customer %>
+                    <p><%= app.customer.first_name %>, <%= app.professional.last_name %></p>
+                  <% end %>
                 <% else %>
                   Available
                 <% end %>
