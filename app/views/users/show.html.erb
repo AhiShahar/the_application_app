@@ -45,7 +45,7 @@
 
     </div>
     <div class="col s12 m6">
-      <% if @current_user.is_professional %>
+      <% if @user.is_professional %>
         <% index = 1 %>
         <%= month_calendar do |date| %>
         <%= link_to("#{date.strftime("%d")}", "#", :class => "dropdown-button", :data => {:activates => "dropdown#{index}"}) %>&nbsp;
