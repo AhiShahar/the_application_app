@@ -1,11 +1,13 @@
 <h3>Our Professionals:</h3>
 <div class="row">
-  <% @users.all.each do |user| %>
+    <% @users.all.each do |user| %>
     <% if user.is_professional %>
     <div class="col s12 m6">
-      <%= user.profession %> <br>
-      <%= link_to("#{user.first_name}, #{user.last_name}", user_path(user)) %><br>
-      <%= user.email %> <br>
-      <hr>
+        <%= user.profession %>
+        <br>
+        <%= link_to("#{user.first_name}, #{user.last_name}", user_path(user)) %><br>
+        <%= user.email %>
+        <br>
+        <hr>
     </div><% end %>
-<% end %></div>
+    <% end %></div>

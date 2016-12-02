@@ -4,31 +4,32 @@
 <% end %>
 
 <div class="row">
-  <% @appointments.each do |app| %>
+    <% @appointments.each do |app| %>
 
-        <div class="col s12 m6">
-          <div class="card">
+    <div class="col s12 m6">
+        <div class="card">
             <div class="card-content black-text">
-              <span class="card-title"><%= app.start_time.strftime("%A, %d-%b %Y - ") %></span>
-              <p>
-                <% if app.appointment_type %>
-                  <%= app.appointment_type.name %>
-                  <% if app.customer == @current_user %>
+                <span class="card-title"><%= app.start_time.strftime("%A, %d-%b %Y - ") %></span>
+                <p>
+                    <% if app.appointment_type %>
+                    <%= app.appointment_type.name %>
+                    <% if app.customer == @current_user %>
                     <p><%= app.professional.first_name %></p>
-                  <% elsif app.customer %>
-                    <p><%= app.customer.first_name %>, <%= app.professional.last_name %></p>
-                  <% elsif !app.customer %>
+                    <% elsif app.customer %>
+                    <p><%= app.customer.first_name %>,
+                        <%= app.professional.last_name %></p>
+                    <% elsif !app.customer %>
                     <p>Available</p>
-                  <% end %>
-                <% end %>
-              </p>
+                    <% end %>
+                    <% end %>
+                </p>
             </div>
             <div class="card-action">
-              <%= link_to "Edit Details", edit_appointment_path(app), :class => 'test'%>
-              <%= link_to "Cancel Appointment", appointment_path(app), :method => :delete, :data => { :confirm => "Are you sure?" }, :class => 'test'%>
+                <%= link_to "Edit Details", edit_appointment_path(app), :class => 'test'%>
+                <%= link_to "Cancel Appointment", appointment_path(app), :method => :delete, :data => { :confirm => "Are you sure?" }, :class => 'test'%>
             </div>
-          </div>
         </div>
+    </div>
 
-  <% end %>
+    <% end %>
 </div>

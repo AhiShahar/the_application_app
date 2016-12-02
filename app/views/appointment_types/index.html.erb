@@ -15,14 +15,14 @@
     </div>
     <% if @current_user && @current_user.is_professional? %>
     <div class="col s12 m4">
-      <div class="row">
-        <div class="col s6 m6">
-            <%= link_to "Add Service", new_appointment_type_path, :class => "right waves-effect waves-light btn blue lighten-3" %>
+        <div class="row">
+            <div class="col s6 m6">
+                <%= link_to "Add Service", new_appointment_type_path, :class => "right waves-effect waves-light btn blue lighten-3" %>
+            </div>
+            <div class="col s6 m6">
+                <%= link_to "My Services", appointment_type_path(@current_user.id), :class => "right waves-effect waves-light btn blue lighten-3" %>
+            </div>
         </div>
-        <div class="col s6 m6">
-            <%= link_to "My Services", appointment_type_path(@current_user.id), :class => "right waves-effect waves-light btn blue lighten-3" %>
-        </div>
-      </div>
     </div>
     <% end %>
 </div>

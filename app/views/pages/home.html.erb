@@ -1,22 +1,22 @@
 <div class="row home-container">
 
-<div class="col m1 s0"></div>
-<div class="col m10 s0">
+    <div class="col m1 s0"></div>
+    <div class="col m10 s0">
 
+        <h1 class="heading">
+            <span>Meet</span>
+            theaa</h1>
+        <h4 class="sub-title">The Appointment app</h4>
 
-<h1 class="heading"><span>Meet</span>  theaa</h1><h4 class="sub-title">The Appointment app</h4>
+        <%#= image_tag( "aa_logo.png", :class => "home-logo" ) %>
 
+        <div class="carousel">
+            <% @images.each do |image| %>
+            <%= cl_image_tag("#{image}", :class => "carousel-item" ) %>
+            <% end %>
+        </div>
 
-<%#= image_tag( "aa_logo.png", :class => "home-logo" ) %>
-
-<div class="carousel">
-  <% @images.each do |image| %>
-  <%= cl_image_tag("#{image}", :class => "carousel-item" ) %>
-  <% end %>
-  </div>
-
-
-</div>
-<div class="col m1 s0"></div>
+    </div>
+    <div class="col m1 s0"></div>
 
 </div>

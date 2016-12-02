@@ -2,33 +2,33 @@
   Iterate through all of them
     Print out the messages -->
 <% unless @appointment_type.errors.full_messages.empty? %>
-  <ul>
+<ul>
     <% @appointment_type.errors.full_messages.each do |error| %>
-      <li>
-        <%= error %> !
-      </li>
+    <li>
+        <%= error %>
+        !
+    </li>
     <% end %>
-  </ul>
+</ul>
 <% end %>
 
 <%= form_for @appointment_type do |f| %>
-    <p>
-      <%= f.label :name %>
-      <%= f.text_field :name, :required => true %>
-    </p>
-    <p>
-      <%= f.label :description %>
-      <%= f.text_field :description, :required => true %>
-    </p>
-    <!-- <p> -->
-      <%#= f.label :price %>
-      <%#= f.float :price, :required => true %>
-    <!-- </p> -->
-    <p>
-      <%= f.label :duration %>
-      <%= f.text_field :duration, :required => true %>
-    </p>
+<p>
+    <%= f.label :name %>
+    <%= f.text_field :name, :required => true %>
+</p>
+<p>
+    <%= f.label :description %>
+    <%= f.text_field :description, :required => true %>
+</p>
+<!-- <p> -->
+<%#= f.label :price %>
+<%#= f.float :price, :required => true %>
+<!-- </p> -->
+<p>
+    <%= f.label :duration %>
+    <%= f.text_field :duration, :required => true %>
+</p>
 
-
-  <%= f.submit %>
+<%= f.submit %>
 <% end %>

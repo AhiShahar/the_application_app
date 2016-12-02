@@ -2,30 +2,30 @@
   Iterate through all of them
     Print out the messages -->
 <% unless @appointment.errors.full_messages.empty? %>
-  <ul>
+<ul>
     <% @appointment.errors.full_messages.each do |error| %>
-      <li>
-        <%= error %> !
-      </li>
+    <li>
+        <%= error %>
+        !
+    </li>
     <% end %>
-  </ul>
+</ul>
 <% end %>
 
 <%= form_for @appointment do |f| %>
-  <% if @current_user.is_professional %>
-    <p>
-      <%= f.label :start_time %>
-      <%= f.datetime_local_field :start_time, :required => true %>
-    </p>
+<% if @current_user.is_professional %>
+<p>
+    <%= f.label :start_time %>
+    <%= f.datetime_local_field :start_time, :required => true %>
+</p>
 
-  <% elsif !@current_user.is_professional %>
-    <p>
-      <%= f.label :service %>
-      <%= f.collection_select(:appointment_type_id, @appointment_types, :id, :name, {:class => 'selectClass'}, :required => true )%>
-    </p>
+<% elsif !@current_user.is_professional %>
+<p>
+    <%= f.label :service %>
+    <%= f.collection_select(:appointment_type_id, @appointment_types, :id, :name, {:class => 'selectClass'}, :required => true )%>
+</p>
 
-  <% end %>
+<% end %>
 
-
-  <%= f.submit %>
+<%= f.submit %>
 <% end %>
