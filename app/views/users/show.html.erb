@@ -47,7 +47,7 @@
     <div class="col s12 m6">
       <% if @current_user.is_professional %>
         <% index = 1 %>
-        <%= week_calendar number_of_weeks: 4 do |date| %>
+        <%= month_calendar do |date| %>
         <%= link_to("#{date.strftime("%d")}", "#", :class => "dropdown-button", :data => {:activates => "dropdown#{index}"}) %>&nbsp;
         <% count = 1 %>
         <ul id='dropdown<%= index %>' class='dropdown-content'>
