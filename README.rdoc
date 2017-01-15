@@ -1,28 +1,25 @@
-== README
+# The Appointment App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## First Ruby on Rails application
 
-Things you may want to cover:
+WDi course week 6, our first rails app, 'Theaa' is a mixture between a personal diary and a social app for professionals (such as PT's, Beauty saloons, Barbers, etc...), it allows approved customers to see your timetable and book appointments onto it, it allows users to see which other professionals are available and what are they offering, and it allows professionals to set their availability and advertise new deals
 
-* Ruby version
+## Motivation
 
-* System dependencies
+purchasing an app of the sort or hiring a secretary is something a lot of small businesses and profesionals cant afford, Theaa will solve those problems for them.
 
-* Configuration
+## Sign-up
 
-* Database creation
+sign-up is free, and atm anyone can be set as a professional, in the next version becoming a professional user will only be done through a moderator
 
-* Database initialization
+## gems
 
-* How to run the test suite
+Cloudinary https://github.com/cloudinary/cloudinary_gem
+simple_calendar https://github.com/excid3/simple_calendar
+ckeditor https://github.com/galetahub/ckeditor
+and ofcourse
+materialize-sass https://github.com/mkhairi/materialize-sass
 
-* Services (job queues, cache servers, search engines, etc.)
+## License
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Free to use github source... although if you like it, some recognition would be much appreciated :)

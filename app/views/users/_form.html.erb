@@ -50,12 +50,13 @@
     <%= f.text_field :profession %>
 </p>
 <p>
-    <%= f.label :description %>
+    <%= f.label :description, id: "reveal" %>
     <%= f.cktext_area :description, value: '', id: 'sometext'%>
 </p>
-
 <%= f.submit %>
 <% if @current_user && @current_user.is_professional == false %>
 <%= link_to "Delete Account", user_path(@current_user), :method => :delete, :data => { :confirm => "Are you sure?" } %>
 <% end %>
+<a href="#" id="show_whatever">Show Whatever</a>
+<div id="whatever" class="hidden">..a,jwgdjadajwdawd.</div>
 <% end %>
