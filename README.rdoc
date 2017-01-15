@@ -1,5 +1,7 @@
 # The Appointment App
 
+http://theaa.herokuapp.com/
+
 ## First Ruby on Rails application
 
 WDi course week 6, our first rails app, 'Theaa' is a mixture between a personal diary and a social app for professionals (such as PT's, Beauty saloons, Barbers, etc...), it allows approved customers to see your timetable and book appointments onto it, it allows users to see which other professionals are available and what are they offering, and it allows professionals to set their availability and advertise new deals
